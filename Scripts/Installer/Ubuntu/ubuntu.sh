@@ -24,7 +24,7 @@ if [ "$first" != 1 ];then
 		*)
 			echo "unknown architecture"; exit 1 ;;
 		esac
-		wget "https://xiaoyu.carryzpy.xyz:22233/%E7%A8%8B%E5%BA%8F/%E5%AE%89%E5%8D%93/Termux/AnLinux/ubuntu-rootfs-armhf.tar.xz" -O $tarball
+		wget "https://bj29.cn-beijing.data.alicloudccp.com/2ZqFz7oG%2F1934524%2F62da94c158f261b6a5b740659553ae08c037d5bc%2F62da94c1e6aedbfbaeb445aebfb069608b7431cd?di=bj29&dr=1934524&f=62da94c158f261b6a5b740659553ae08c037d5bc&response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27ubuntu-rootfs-armhf.tar.xz&u=dae215e673c34aa880969763a1378fe7&x-oss-access-key-id=LTAI5t8sJLSvMtxoes9pGyTv&x-oss-expires=1658507424&x-oss-signature=N6HwUtOa4r0BFj19YRDYHxpLnWTQt6Bg6XVeeQ2wzc8%3D&x-oss-signature-version=OSS2" -O $tarball
 	fi
 	cur=`pwd`
 	mkdir -p "$folder"
