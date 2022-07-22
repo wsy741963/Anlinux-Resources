@@ -24,7 +24,7 @@ if [ "$first" != 1 ];then
 		*)
 			echo "unknown architecture"; exit 1 ;;
 		esac
-		wget "https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Rootfs/Ubuntu/${archurl}/ubuntu-rootfs-${archurl}.tar.xz" -O $tarball
+		wget "https://xiaoyu.carryzpy.xyz:22233/%E7%A8%8B%E5%BA%8F/%E5%AE%89%E5%8D%93/Termux/AnLinux/ubuntu-rootfs-armhf.tar.xz" -O $tarball
 	fi
 	cur=`pwd`
 	mkdir -p "$folder"
