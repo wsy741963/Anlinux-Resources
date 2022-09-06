@@ -2,12 +2,12 @@
 folder=ubuntu-fs
 if [ -d "$folder" ]; then
 	first=1
-	echo "skipping downloading"
+	echo "跳过下载"
 fi
 tarball="ubuntu-rootfs.tar.xz"
 if [ "$first" != 1 ];then
 	if [ ! -f $tarball ]; then
-		echo "Download Rootfs, this may take a while base on your internet speed."
+		echo "下载Rootfs。。。请勿退出"
 		case `dpkg --print-architecture` in
 		aarch64)
 			archurl="arm64" ;;
@@ -22,20 +22,20 @@ if [ "$first" != 1 ];then
 		x86)
 			archurl="i386" ;;
 		*)
-			echo "unknown architecture"; exit 1 ;;
+			echo "位置架构"; exit 1 ;;
 		esac
 		wget "https://raw.kgithub.com/wsy741963/Anlinux-Resources/master/Rootfs/Ubuntu/armhf/ubuntu-rootfs-armhf.tar.xz" -O $tarball
 	fi
 	cur=`pwd`
 	mkdir -p "$folder"
 	cd "$folder"
-	echo "Decompressing Rootfs, please be patient."
+	echo "安装Rootfs。。。"
 	proot --link2symlink tar -xJf ${cur}/${tarball}||:
 	cd "$cur"
 fi
 mkdir -p ubuntu-binds
 bin=start-ubuntu.sh
-echo "writing launch script"
+echo "写入启动脚本"
 cat > $bin <<- EOM
 #!/bin/bash
 cd \$(dirname \$0)
@@ -77,12 +77,12 @@ else
 fi
 EOM
 
-echo "Setting up pulseaudio so you can have music in distro."
+echo "安装音频驱动"
 
 pkg install pulseaudio -y
 
 if grep -q "anonymous" ~/../usr/etc/pulse/default.pa;then
-    echo "module already present"
+    echo "成功"
 else
     echo "load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" >> ~/../usr/etc/pulse/default.pa
 fi
@@ -98,6 +98,6 @@ echo "fixing shebang of $bin"
 termux-fix-shebang $bin
 echo "making $bin executable"
 chmod +x $bin
-echo "removing image for some space"
+echo "清理安装镜像"
 rm $tarball
-echo "You can now launch Ubuntu with the ./${bin} script"
+echo "以后使用这个脚本登录ubuntu ./${bin} script"
